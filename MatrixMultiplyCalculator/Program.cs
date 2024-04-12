@@ -46,7 +46,7 @@ namespace MatrixMultiplyCalculator
             //int maxTH = Math.Max(32, Environment.ProcessorCount);
             List<int> threads = Enumerable.Range(1, Environment.ProcessorCount).ToList();
             //List<int> sizes = Enumerable.Range(1, 4).Select(x => x *250).ToList();
-
+            List<int> seeds = Enumerable.Range(1, 4).ToList();
             Console.WriteLine("Enter the size of matrix");
             int size = int.Parse(Console.ReadLine());
 
@@ -60,7 +60,7 @@ namespace MatrixMultiplyCalculator
                 foreach (int th in threads)
                 {
                     Console.Write($"th: {th} ");
-                    for (int seed = 1; seed < 5; seed++)
+                    foreach (int seed in seeds)
                     {
                         Console.Write($"seed: {seed} ");
                         Matrix A = new Matrix(s, s, seed);
@@ -77,7 +77,7 @@ namespace MatrixMultiplyCalculator
                         times[th - 1] += elapsedMs;
                     }
                 }
-                times.Select(x => x / 5).ToArray();
+                times.Select(x => x / seeds.Count).ToArray();
 
                 Console.WriteLine("\n Threads");
                 Console.WriteLine(String.Join(" ",threads));
