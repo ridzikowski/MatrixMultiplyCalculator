@@ -73,7 +73,7 @@ namespace MatrixMultiplyCalculator
                             A.multiplyThread(B, th);
                         watch.Stop();
                         var elapsedMs = watch.ElapsedMilliseconds;
-                        Console.Write($"time : {elapsedMs} ");
+                        Console.Write($"time : {elapsedMs} ms");
                         times[th - 1] += elapsedMs;
                     }
                 }
